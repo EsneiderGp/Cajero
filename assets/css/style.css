@@ -1,39 +1,142 @@
-*{
+* {
     margin: 0px;
     padding: 0px;
     box-sizing: border-box;
 }
-header{
+
+body {
+    background-color:rgb(38, 38, 38);
+}
+
+header {
     font-size: 25px;
+    font-family: 'Times New Roman', Times, serif;
+    color: white;
+    gap: 3rem;
 }
-label{
-    font-family: Verdana, Geneva, Tahoma, sans-serif;
+
+label {
+    font-family: 'Times New Roman', Times, serif;
     font-size: 20px;
+    position: absolute;
+    left: 20px;
+    transition: all .3s ease-in-out;
+    top: 0;
+
+
+
 }
-input{
-    padding: 1rem;
-    
+
+input {
+    padding: .5rem 1rem;
+    border: none;
+    border-bottom: solid 1px #494b4b;
+    font-family: 'Times New Roman', Times, serif;
 }
-.iconos{
+
+input:focus-within {
+
+    outline: none;
+    border-bottom: solid 1px #186584;
+}
+
+input:focus-within~label, input:valid~label {
+    top: -20px;
+    font-size: 15px;
+    left: 0;
+}
+
+button {
+    padding: 1rem 0.5rem;
+    border-radius: 100px;
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
+    background-color: #186584;
+    color: white;
+    font-size: medium;
+}
+
+button:hover {
+    background-color: #001F3F;
+    transition: background-color .3s ease-in-out;
+}
+
+.iconos {
     display: flex;
     justify-content: center;
     align-items: center;
 }
-.formulario{
+
+.formulario {
     max-width: 1440px;
     width: 100%;
-    border: solid 1px red;
+    height: 600px;
     margin-left: auto;
     margin-right: auto;
     display: flex;
     justify-content: center;
+    gap: 4rem;
     align-items: center;
+    margin-top: 60px;
 }
-.columna-uno{
-    background-color:#186584;
-    padding: 1rem;
-}
-.nombre,.contrasena,.nombre-registro,.email,.password,.number{
+
+.columna-uno {
+    background-color: white;
+    height: 100%;
+    width: 400px;
+    min-height: 1rem;
+    padding: 1rem 2rem;
+    box-shadow: 4px 4px 16px rgba(0, 0, 0, 0.1);
     display: flex;
     flex-direction: column;
+    justify-content: center;
+    gap: 2rem;
+}
+
+.columna-uno img {
+    width: 60%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.columna-dos {
+    background-color: #186584;
+    height: 100%;
+    width: 400px;
+    min-height: 1rem;
+    padding: 1rem 2rem;
+    box-shadow: 4px 4px 16px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 2rem;
+}
+.columna-dos input{
+    background-color: transparent;
+    border-color:  white;
+    color: white;
+
+}
+.columna-dos label{
+    color: white;
+    
+}
+.columna-dos button {
+    border: solid 2px white;
+    
+}
+.columna-dos button:hover{
+    background-color: white;
+    color: #19473B;
+}
+.nombre,
+.contrasena,
+.nombre-registro,
+.email,
+.password,
+.number {
+    display: flex;
+    flex-direction: column;
+    position: relative;
 }

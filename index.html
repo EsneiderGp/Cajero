@@ -10,50 +10,51 @@
 
 <body>
     <header class="iconos">
-        <p>Historial Movimientos</p>
         <a href="">
             <script src="https://cdn.lordicon.com/lordicon-1.1.0.js"></script>
             <lord-icon src="https://cdn.lordicon.com/wdwnigos.json" trigger="hover"
-                colors="primary:#186584,secondary:#19473b,tertiary:#001f3f,quaternary:#186584"
-                style="width:100px;height:100px">
-            </lord-icon>
-        </a>
-        <p>Perfil</p>
-        <a href="">
-            <script src="https://cdn.lordicon.com/lordicon-1.1.0.js"></script>
-            <lord-icon src="https://cdn.lordicon.com/hjacfjiq.json" trigger="hover" stroke="bold"
-                colors="primary:#186584,secondary:#19473b,tertiary:#001f3f" style="width:100px;height:100px">
-            </lord-icon>
-        </a>
+            colors="primary:#186584,secondary:#19473b,tertiary:#001f3f,quaternary:#186584"
+            style="width:100px;height:100px">
+        </lord-icon>
+    </a>
+    <p>Historial Movimientos</p>
+    <a href="">
+        <script src="https://cdn.lordicon.com/lordicon-1.1.0.js"></script>
+        <lord-icon src="https://cdn.lordicon.com/hjacfjiq.json" trigger="hover" stroke="bold"
+        colors="primary:#186584,secondary:#19473b,tertiary:#001f3f" style="width:100px;height:100px">
+    </lord-icon>
+</a>
+<p>Perfil</p>
     </header>
     <div class="formulario">
         <form action="" class="columna-uno">
+            <img src="./assets/img/logo.png" alt="">
             <div class="nombre">
+                <input type="nombre" required="required" name="nombre" id="nombre">
                 <label for="nombre">Usuario</label>
-                <input type="nombre" name="nombre" id="nombre" placeholder="nombre">
             </div>
             <div class="contrasena">
+                <input type="contrasena" required="required" id="contrasena" name="contrasena">
                 <label for="contrasena">Contrasena</label>
-                <input type="contrasena" id="contrasena" name="contrasena" placeholder="contrasena">
             </div>
             <button onclick="Ingresar">Ingresar</button>
         </form>
         <form action="" class="columna-dos">
             <div class="nombre-registro">
+                <input type="text" id="nombre-registro" required="required" name="nombre-registro" class="uno">
                 <label for="nombre-registro">nombre</label>
-                <input type="text" id="nombre-registro" placeholder="nombre" name="nombre-registro" class="uno">
             </div>
             <div class="email">
+                <input type="email" id="correo" name="correo" required="required" class="dos">
                 <label for="email">correo</label>
-                <input type="email" id="correo" name="correo" placeholder="correo" class="dos">
             </div>
             <div class="password">
+                <input type="password" id="contrasena-registro" name="contrasena-registro" required="required" "class="tres">
                 <label for="password">contrasena</label>
-                <input type="password" id="contrasena-registro" name="contrasena-registro" placeholder="contrasena "class="tres">
             </div>
             <div class="number">    
+                <input type="number" id="valorRegistro" name="number" required="required" class="cuatro">
                 <label for="number">valorRegistro</label>
-                <input type="number" id="valorRegistro" name="number" placeholder="valorRegistro" class="cuatro">
             </div>
             <button onclick="register()">Registrar</button>
         </form>
@@ -69,7 +70,6 @@
         <button onclick="TransferirDinero()">Transferir</button>
         <button onclick="ConsignarDinero()">Consignar</button>
     </div>
-
     <script src="./assets/js/script.js"></script>
 </body>
 
