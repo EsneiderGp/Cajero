@@ -5,7 +5,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./assets/css/style.css">
-    <title>Document</title>
+    <link rel="shortcut icon" href="/assets/img/logo.png">
+    <title>Bank Fénix</title>
 </head>
 
 <body>
@@ -26,8 +27,8 @@
 </a>
 <p>Perfil</p>
     </header>
-    <div class="formulario">
-        <form action="" class="columna-uno">
+    <div class="formulario" id="form1">
+        <div action="" class="columna-uno">
             <img src="./assets/img/logo.png" alt="">
             <div class="nombre">
                 <input type="nombre" required="required" name="nombre" id="nombre">
@@ -37,11 +38,11 @@
                 <input type="contrasena" required="required" id="contrasena" name="contrasena">
                 <label for="contrasena">Contrasena</label>
             </div>
-            <button onclick="Ingresar">Ingresar</button>
-        </form>
-        <form action="" class="columna-dos">
+            <button onclick="Ingresar()">Ingresar</button>
+        </div>
+        <div action="" class="columna-dos">
             <div class="nombre-registro">
-                <input type="text" id="nombre-registro" required="required" name="nombre-registro" class="uno">
+                <input type="text" id="nombre_registro" required="required" name="nombre-registro" class="uno">
                 <label for="nombre-registro">nombre</label>
             </div>
             <div class="email">
@@ -49,24 +50,24 @@
                 <label for="email">correo</label>
             </div>
             <div class="password">
-                <input type="password" id="contrasena-registro" name="contrasena-registro" required="required" "class="tres">
+                <input type="password" id="contrasena_registro" name="contrasena-registro" required="required" "class="tres">
                 <label for="password">contrasena</label>
             </div>
             <div class="number">    
                 <input type="number" id="valorRegistro" name="number" required="required" class="cuatro">
                 <label for="number">valorRegistro</label>
             </div>
-            <button onclick="register()">Registrar</button>
-        </form>
+            <button onclick="register()">Registrar</button>            
+        </div>
     </div>
-    <div>
+    <div class="menu-opciones" id="form1">
         <button onclick="ConsulatarSaldo()">Consultar</button>
         <button onclick="RetirarDinero()">Retirar</button>
     </div>
     <div>
         contenido
     </div>
-    <div>
+    <div class="menu-opciones-uno">
         <button onclick="TransferirDinero()">Transferir</button>
         <button onclick="ConsignarDinero()">Consignar</button>
     </div>
