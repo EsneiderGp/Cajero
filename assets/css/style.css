@@ -5,10 +5,7 @@
 }
 
 body {
-    background-color:rgb(110, 141, 150);
-    display: flex;
-    justify-content: center;
-    align-items: flex-start;
+    background-color:rgb(182, 202, 207);
 }
 .logo_oculto{
     display: none;
@@ -26,7 +23,7 @@ header {
     gap: 3rem; 
     display: flex;
     align-items: center;
-    width: 1000%;
+    width: 100%;
 }
 
 
@@ -149,11 +146,11 @@ button:hover {
 }
 .menu-opciones{
     display: none;
-
 }
 .informacion{
     display: none;
 }
-.form1{
-    display: none;
+.form_uno{
+    display:none;
+    flex-direction: column;
 }
