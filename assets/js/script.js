@@ -1,11 +1,25 @@
 
 let usuarios = []
 function Ingresar() {
+    let formularios = document.getElementById('columna_dos')
+    let formulario = document.getElementById('columna_uno')
+    let logo = document.getElementById('logo')
+    let form1 = document.getElementById('form1')
+    let informacion = document.getElementById('informacion')
     var usuario2 = document.getElementById("nombre").value
     var contrasena = document.getElementById("contrasena").value
     var filteredUsers = usuarios.filter(function (user) {
         return user.nombre == usuario2;
     });
+    formularios.style.display='none'
+    formulario.style.display='none'
+    logo.style.display='flex'
+    setTimeout(function(){
+        logo.style.display='none'
+        iconos.style.display='flex'
+        form1.style.display='flex'
+        informacion.style.display='flex'
+    },3000)
     if (filteredUsers[0].contrasena == contrasena) {
         alert('Bienvenido !!')
     }else{
@@ -41,3 +55,8 @@ function register() {
         console.log(usuarios);
     }
 }
+
+let botones = document.getElementById('iconos')
+    iconos.style.display='flex'
+    iconos.style.display= 'none'
+    

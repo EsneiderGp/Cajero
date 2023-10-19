@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 
 <head>
     <meta charset="UTF-8">
@@ -10,10 +10,11 @@
 </head>
 
 <body>
-    <header class="iconos">
+    <img src="./assets/img/logo.png" alt="" id="logo" class="logo_oculto">
+    <header class="iconos" id="iconos">
         <a href="">
             <script src="https://cdn.lordicon.com/lordicon-1.1.0.js"></script>
-            <lord-icon src="https://cdn.lordicon.com/wdwnigos.json" trigger="hover"
+            <lord-icon src="https://cdn.lordicon.com/wdwnigos.json" trigger="loop"
             colors="primary:#186584,secondary:#19473b,tertiary:#001f3f,quaternary:#186584"
             style="width:100px;height:100px">
         </lord-icon>
@@ -21,14 +22,14 @@
     <p>Historial Movimientos</p>
     <a href="">
         <script src="https://cdn.lordicon.com/lordicon-1.1.0.js"></script>
-        <lord-icon src="https://cdn.lordicon.com/hjacfjiq.json" trigger="hover" stroke="bold"
+        <lord-icon src="https://cdn.lordicon.com/hjacfjiq.json" trigger="loop" stroke="bold"
         colors="primary:#186584,secondary:#19473b,tertiary:#001f3f" style="width:100px;height:100px">
     </lord-icon>
 </a>
 <p>Perfil</p>
     </header>
     <div class="formulario" id="form1">
-        <div action="" class="columna-uno">
+        <div action="" class="columna_uno" id="columna_uno">
             <img src="./assets/img/logo.png" alt="">
             <div class="nombre">
                 <input type="nombre" required="required" name="nombre" id="nombre">
@@ -38,9 +39,9 @@
                 <input type="contrasena" required="required" id="contrasena" name="contrasena">
                 <label for="contrasena">Contrasena</label>
             </div>
-            <button onclick="Ingresar()">Ingresar</button>
+            <button type="button" onclick="Ingresar()">Ingresar</button>
         </div>
-        <div action="" class="columna-dos">
+        <div action="" class="columna_dos" id="columna_dos">
             <div class="nombre-registro">
                 <input type="text" id="nombre_registro" required="required" name="nombre-registro" class="uno">
                 <label for="nombre-registro">nombre</label>
@@ -60,18 +61,18 @@
             <button onclick="register()">Registrar</button>            
         </div>
     </div>
-    <div class="menu-opciones" id="form1">
-        <button onclick="ConsulatarSaldo()">Consultar</button>
-        <button onclick="RetirarDinero()">Retirar</button>
+    <div class="menu_opciones" id="menu_opciones">
+        <div class="form1" id="form1">
+            <button onclick="ConsulatarSaldo()">Consultar</button>
+            <button onclick="RetirarDinero()">Retirar</button>
+            <button onclick="TransferirDinero()">Transferir</button>
+            <button onclick="ConsignarDinero()">Consignar</button>
+        </div>
+        <div class="informacion" id="informacion">
+            contenido
+        </div>
     </div>
-    <div>
-        contenido
-    </div>
-    <div class="menu-opciones-uno">
-        <button onclick="TransferirDinero()">Transferir</button>
-        <button onclick="ConsignarDinero()">Consignar</button>
-    </div>
-    <script src="./assets/js/script.js"></script>
+        <script src="./assets/js/script.js"></script>
 </body>
 
 </html>
