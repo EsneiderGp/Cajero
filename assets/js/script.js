@@ -3,6 +3,7 @@ let usuarios = []
 function Ingresar() {
     let formularios = document.getElementById('columna_dos')
     let formulario = document.getElementById('columna_uno')
+    let form1 = document.getElementById('form1')
     let logo = document.getElementById('logo')
     let form_uno = document.getElementById('form_uno')
     let iconos = document.getElementById('iconos')
@@ -13,13 +14,15 @@ function Ingresar() {
     formularios.style.display='none'
     formulario.style.display='none'
     logo.style.display='flex'
+    form1.style.display='none'
     setTimeout(function(){
         logo.style.display='none'
         iconos.style.display='flex'
         form_uno.style.display='flex' 
         informacion.style.display='flex'
         menu_opciones.style.display='flex'
-    },3000)
+        form1.style.display='none'
+    },2000)
     var filteredUsers = usuarios.filter(function (user) {
         return user.nombre == usuario2;
     });
