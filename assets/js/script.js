@@ -1,5 +1,6 @@
 
 let usuarios = []
+let contId = 0
 var consultar = document.getElementById('consultar')
 var retirar = document.getElementById('retirar')
 var transferir = document.getElementById('transferir')
@@ -13,37 +14,43 @@ var lblMonto_Retirar = document.getElementById('lblMonto_Retirar')
 var lblNombre_Consignar = document.getElementById('lblNombre_Consignar')
 var lblCorreo_Consignar = document.getElementById('lblCorreo_Consignar')
 var lblMonto_Consignar = document.getElementById('lblMonto_Consignar')
-var lblNombre_Transferir= document.getElementById('lblNombre_Transferir')
+var lblNombre_Transferir = document.getElementById('lblNombre_Transferir')
 var lblCorreo_Transferir = document.getElementById('lblCorreo_Transferir')
 var lblMonto_Transferir = document.getElementById('lblMonto_Transferir')
 
+
+
+let botones = document.getElementById('iconos')
+iconos.style.display = 'flex'
+iconos.style.display = 'none'
+
+
+
 llenarCuentas()
 function Ingresar() {
-    let nombre =  document.getElementById('nombre').value
-    console.log(usuarios);
     let contrasena = document.getElementById('contrasena').value
-        var intentosFallidos = 0
-        var contadorFallidos = 0
-        while(intentosFallidos == 1 || contadorFallidos ==3)
-        {
-            if( 
-                nombre == usuarios[0].nombre
-                && contrasena == usuarios[0].contrasena){
-                    alert("Bienvenido")
-                    mostrarformulario()
-                    intentosFallidos = 1
-                }else{
-                    alert("Usuario o Contraseña incorrecta")
-                    contadorFallidos++ 
-                }
+    let nombre = document.getElementById('nombre').value
+    var ingresando = usuarios.filter((usuario) => usuario.nombre == nombre)
+
+    if (ingresando.length == 1) {
+        if (ingresando[0].intentos < 3) {
+            if (contrasena == ingresando[0].contrasena) {
+                alert("Bienvenido")
+                console.log(ingresando[0].id);
+                usuarios[ingresando[0].id].status = true
+                mostrarformulario()
+            } else {
+                alert("Credencias incorrectas")
+                ingresando[0].intentos++
+            }
+        } else {
+            alert('Maximo de intentos alcanzados')
         }
-        if(contadorFallidos=3){
-            alert('usted llego al maximo intentos fallidos')
-        }
-        
-    // }
+    } else {
+        alert('Usuario no registrado')
+    }
 }
-function mostrarformulario(){
+function mostrarformulario() {
     let formularios = document.getElementById('columna_dos')
     let formulario = document.getElementById('columna_uno')
     let form1 = document.getElementById('form1')
@@ -52,88 +59,93 @@ function mostrarformulario(){
     let iconos = document.getElementById('iconos')
     let menu_opciones = document.getElementById('menu_opciones')
     let informacion = document.getElementById('informacion')
-    lblNombre.innerText= usuarios[0].nombre
-    lblCorreo.innerText= usuarios[0].correo
-    lblMonto.innerText= usuarios[0].saldo
-    lblNombre_Retirar.innerText = usuarios[0].nombre
-    lblCorreo_Retirar.innerText = usuarios[0].correo
-    lblMonto_Retirar.innerText = usuarios[0].saldo
-    lblNombre_Consignar.innerText = usuarios[0].nombre
-    lblCorreo_Consignar.innerText = usuarios[0].correo
-    lblMonto_Consignar.innerText = usuarios[0].saldo
-    lblNombre_Transferir.innerText = usuarios[0].nombre
-    lblCorreo_Transferir.innerText = usuarios[0].correo
-    lblMonto_Transferir.innerText = usuarios[0].saldo
 
-    formularios.style.display='none'
-    formulario.style.display='none'
-    logo.style.display='flex'
-    form1.style.display='none'
-    setTimeout(function(){
-        logo.style.display='none'
-        iconos.style.display='flex'
-        form_uno.style.display='flex' 
-        informacion.style.display='flex'
-        menu_opciones.style.display='flex'
-        form1.style.display='none'
-    },3000)
+    let nombre = document.getElementById('nombre').value
+    let ingresando = usuarios.filter((usuario) => usuario.nombre == nombre)
+
+
+    lblNombre.innerText = ingresando[0].nombre
+    lblCorreo.innerText = ingresando[0].correo
+    lblMonto.innerText = ingresando[0].saldo
+    lblNombre_Retirar.innerText = ingresando[0].nombre
+    lblCorreo_Retirar.innerText = ingresando[0].correo
+    lblMonto_Retirar.innerText = ingresando[0].saldo
+    lblNombre_Consignar.innerText = ingresando[0].nombre
+    lblCorreo_Consignar.innerText = ingresando[0].correo
+    lblMonto_Consignar.innerText = ingresando[0].saldo
+    lblNombre_Transferir.innerText = ingresando[0].nombre
+    lblCorreo_Transferir.innerText = ingresando[0].correo
+    lblMonto_Transferir.innerText = ingresando[0].saldo
+
+    formularios.style.display = 'none'
+    formulario.style.display = 'none'
+    logo.style.display = 'flex'
+    form1.style.display = 'none'
+    setTimeout(function () {
+        logo.style.display = 'none'
+        iconos.style.display = 'flex'
+        form_uno.style.display = 'flex'
+        informacion.style.display = 'flex'
+        menu_opciones.style.display = 'flex'
+        form1.style.display = 'none'
+    }, 3000)
     llenarCuentas()
 }
 
-function ConsultarSaldo(){
-  consultar.classList.remove('hiden')
-  consultar.classList.add('active')
+function ConsultarSaldo() {
+    consultar.classList.remove('hiden')
+    consultar.classList.add('active')
 
-  retirar.classList.remove('active')
-  retirar.classList.add('hiden')
+    retirar.classList.remove('active')
+    retirar.classList.add('hiden')
 
-  consignar.classList.add('hiden')
-  consignar.classList.remove('active')
+    consignar.classList.add('hiden')
+    consignar.classList.remove('active')
 
-  transferir.classList.remove('active')
-  transferir.classList.add('hiden')
+    transferir.classList.remove('active')
+    transferir.classList.add('hiden')
 
-
-}
-function RetirarDinero(){
-  retirar.classList.remove('hiden')
-  retirar.classList.add('active')
-
-  consultar.classList.remove('active')
-  consultar.classList.add('hiden')
-
-  consignar.classList.add('hiden')
-  consignar.classList.remove('active')
-
-  transferir.classList.remove('active')
-  transferir.classList.add('hiden')
-}
-function TransferirDinero(){
-  transferir.classList.remove('hiden')
-  transferir.classList.add('active')
-
-  retirar.classList.remove('active')
-  retirar.classList.add('hiden')
-
-  consultar.classList.remove('active')
-  consultar.classList.add('hiden')
-
-  consignar.classList.add('hiden')
-  consignar.classList.remove('active')
 
 }
-function ConsignarDinero(){
-  consignar.classList.remove('hiden')
-  consignar.classList.add('active')
-  
-  transferir.classList.remove('active')
-  transferir.classList.add('hiden')
+function RetirarDinero() {
+    retirar.classList.remove('hiden')
+    retirar.classList.add('active')
 
-  retirar.classList.remove('active')
-  retirar.classList.add('hiden')
+    consultar.classList.remove('active')
+    consultar.classList.add('hiden')
 
-  consultar.classList.remove('active')
-  consultar.classList.add('hiden')
+    consignar.classList.add('hiden')
+    consignar.classList.remove('active')
+
+    transferir.classList.remove('active')
+    transferir.classList.add('hiden')
+}
+function TransferirDinero() {
+    transferir.classList.remove('hiden')
+    transferir.classList.add('active')
+
+    retirar.classList.remove('active')
+    retirar.classList.add('hiden')
+
+    consultar.classList.remove('active')
+    consultar.classList.add('hiden')
+
+    consignar.classList.add('hiden')
+    consignar.classList.remove('active')
+
+}
+function ConsignarDinero() {
+    consignar.classList.remove('hiden')
+    consignar.classList.add('active')
+
+    transferir.classList.remove('active')
+    transferir.classList.add('hiden')
+
+    retirar.classList.remove('active')
+    retirar.classList.add('hiden')
+
+    consultar.classList.remove('active')
+    consultar.classList.add('hiden')
 
 }
 function register() {
@@ -141,98 +153,128 @@ function register() {
     var contrasena = document.getElementById("contrasena_registro").value
     var correo = document.getElementById("correo").value
     var saldo = parseInt(document.getElementById("saldo").value)
-    if (usuario2 == '' || contrasena == '' || correo == ''||saldo=='') {
+
+    var ingresando1 = usuarios.filter((usuario) => usuario.nombre == usuario2)
+
+
+    if (usuario2 == '' || contrasena == '' || correo == '' || saldo == '') {
         alert('Falta info')
-    }else {
-        if (saldo >= 100000){
-            let usuario = {
-                nombre: '',
-                contrasena: '',
-                correo: '',
-                saldo: 0
-            }
-            usuario.saldo = saldo
-            usuario.contrasena = contrasena
-            usuario.correo = correo
-            usuario.nombre = usuario2
-            usuarios.push(usuario)
-            console.log(usuarios);
-            alert('Usuario creado con exito');
-            mostrarformulario()
-        }else {alert ('no se puede crear cuenta por saldo insuficiente ')}
+    } else {
+        if (ingresando1.length > 0) {
+            alert('Este Usuario ya existe')
+        } else {
+            if (saldo >= 100000) {
+                let usuario = {
+                    id: 0,
+                    nombre: '',
+                    contrasena: '',
+                    correo: '',
+                    saldo: 0,
+                    intentos: 0,
+                    status: false
+                }
+                usuario.id = contId
+                usuario.saldo = saldo
+                usuario.contrasena = contrasena
+                usuario.correo = correo
+                usuario.nombre = usuario2
+                usuarios.push(usuario)
+                contId++
+                console.log(usuarios);
+                alert('Usuario creado con exito');
+            } else { alert('no se puede crear cuenta por saldo insuficiente ') }
+        }
     }
 }
-
-let botones = document.getElementById('iconos')
-    iconos.style.display='flex'
-    iconos.style.display= 'none'
-
-function Retirar (){
+function Retirar() {
     var ValorRetiro = document.getElementById('input_Retirar').value;
-    var SaldoDisponible = usuarios[0].saldo;
+
+    let nombre = document.getElementById('nombre').value
+    let ingresando = usuarios.filter((usuario) => usuario.nombre == nombre)
+
+    var SaldoDisponible = ingresando[0].saldo;
     var resta = SaldoDisponible - ValorRetiro;
     console.log(SaldoDisponible);
-    if (resta < 10000){
-        alert('no se puede realizar la transaccion')
-    }else{
-        usuarios[0].saldo = resta;
+    if (resta < 10000) {
+        alert('no se puede realizar la transaccion, fondos insuficientes')
+    } else {
+        ingresando[0].saldo = resta;
         alert('transaccion exitosa')
-        ValorRetiro.value=""
+        ValorRetiro.value = ""
     }
     actualizarSaldo()
 }
-function Consignar(){
-    var ValorConsignar = parseInt(document.getElementById('input_Consignar').value);
-    if (confirm('seguro que deseas consignar'+ ValorConsignar)){
-        usuarios[0].saldo += ValorConsignar;
-        alert('Consignacion exitosa')
-        ValorConsignar.value =''
-    }else{
-        alert('consigancion cancelada')
+function Consignar() {
 
+    let nombre = document.getElementById('nombre').value
+    let ingresando = usuarios.filter((usuario) => usuario.nombre == nombre)
+
+    var ValorConsignar = parseInt(document.getElementById('input_Consignar').value);
+    if (ValorConsignar >= 10000) {
+        if (confirm('seguro que deseas consignar' + ValorConsignar)) {
+            ingresando[0].saldo += ValorConsignar;
+            alert('Consignacion exitosa')
+            ValorConsignar.value = ''
+        } else {
+            alert('consigancion cancelada')
+        }
+    } else {
+        alert("No es posible consignar menos a $10000")
     }
     actualizarSaldo()
     console.log(usuarios);
 }
-function actualizarSaldo(){
+function actualizarSaldo() {
     let saldoActual = usuarios[0].saldo;
-    lblMonto.innerText= saldoActual;
-    lblMonto_Retirar.innerText = saldoActual   ; 
-    lblMonto_Consignar.innerText = saldoActual  ;
-    lblMonto_Transferir.innerText = saldoActual ;
+    lblMonto.innerText = saldoActual;
+    lblMonto_Retirar.innerText = saldoActual;
+    lblMonto_Consignar.innerText = saldoActual;
+    lblMonto_Transferir.innerText = saldoActual;
 }
-function Transferir(){
+function Transferir() {
+
+    let nombre = document.getElementById('nombre').value
+    let ingresando = usuarios.filter((usuario) => usuario.nombre == nombre)
+
     var ValorTransferir = document.getElementById('input_Transferir').value;
     var select = document.getElementById('cuenta').value;
-    let saldoActual = usuarios[0].saldo;
-    parseInt()
-    var resta = saldoActual - ValorTransferir ;
-    if (resta < 10000){
+
+    let aTransferir = usuarios.filter((usuario) => usuario.nombre == select)
+
+    let saldoActual = ingresando[0].saldo;
+    var resta = saldoActual - ValorTransferir;
+    if (resta < 10000) {
         alert('no se puede realizar la transaccion')
-    }else{
-        console.log(resta);
-        if(confirm('seguro que deseas transferir' + ValorTransferir)){
-            usuarios[0].saldo = parseInt(resta);
-            for(var i=0;i<usuarios.length;i++){
-                if(usuarios[i].nombre==select){
-                    usuarios[i].saldo+=parseInt(ValorTransferir);
-                    break
-                    }
-        }
-        }else{
+    } else {
+        if (confirm('seguro que deseas transferir' + ValorTransferir)) {
+            ingresando[0].saldo = parseInt(resta);
+            aTransferir[0].saldo += parseInt(ValorTransferir);
+            alert('Transferencias realizada')
+            console.log(usuarios);
+        } else {
             alert('transferencia cancelada')
-        }   
+        }
     }
     actualizarSaldo();
     console.log(usuarios);
 }
-function llenarCuentas(){
+function llenarCuentas() {
     var lista = document.getElementById("cuenta")
-    for (let i = 0; i < usuarios.length; i++){
+    for (let i = 0; i < usuarios.length; i++) {
         var option = document.createElement("option");
         option.value = usuarios[i].nombre;
         option.text = usuarios[i].nombre;
         lista.appendChild(option)
     }
 
+}
+
+function cerrarSesion() {
+    let nombre = document.getElementById('nombre').value
+    let ingresando = usuarios.filter((usuario) => usuario.nombre == nombre)
+    if (confirm('Seguro desea cerrar sesión')) {
+        usuarios[ingresando[0].id] = false
+        mostrarformulario()        
+        alert('Vuelva pronto')
+    }
 }
