@@ -158,6 +158,7 @@ button:hover {
     background-color: #186584;
     border-radius: 10px;
     box-shadow: 4px 4px 16px rgba(0, 0, 0, 0.9);
+    color: white;
 }
 .form_uno{
     display:none;
@@ -165,4 +166,18 @@ button:hover {
     width: 200px;
     gap: 5rem;
     margin-left: 200px;    
+}
+.hiden {
+    display: none;
+}
+.active{
+    display: block;
+    background-color: #186584;
+    text-align: center;
+    box-shadow: 4px 4px 16px rgba(0, 0, 0, 0.6);
+    width: 100%;
+}
+span{
+    font-size: 2em;
+    color:white;
 }
