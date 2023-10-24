@@ -27,29 +27,7 @@ iconos.style.display = 'none'
 
 
 llenarCuentas()
-function Ingresar() {
-    let contrasena = document.getElementById('contrasena').value
-    let nombre = document.getElementById('nombre').value
-    var ingresando = usuarios.filter((usuario) => usuario.nombre == nombre)
 
-    if (ingresando.length == 1) {
-        if (ingresando[0].intentos < 3) {
-            if (contrasena == ingresando[0].contrasena) {
-                alert("Bienvenido")
-                console.log(ingresando[0].id);
-                usuarios[ingresando[0].id].status = true
-                mostrarformulario()
-            } else {
-                alert("Credencias incorrectas")
-                ingresando[0].intentos++
-            }
-        } else {
-            alert('Maximo de intentos alcanzados')
-        }
-    } else {
-        alert('Usuario no registrado')
-    }
-}
 function mostrarformulario() {
     let formularios = document.getElementById('columna_dos')
     let formulario = document.getElementById('columna_uno')
@@ -148,6 +126,29 @@ function ConsignarDinero() {
     consultar.classList.add('hiden')
 
 }
+function Ingresar() {
+    let contrasena = document.getElementById('contrasena').value
+    let nombre = document.getElementById('nombre').value
+    var ingresando = usuarios.filter((usuario) => usuario.nombre == nombre)
+
+    if (ingresando.length == 1) {
+        if (ingresando[0].intentos < 3) {
+            if (contrasena == ingresando[0].contrasena) {
+                alert("Bienvenido")
+                console.log(ingresando[0].id);
+                usuarios[ingresando[0].id].status = true
+                mostrarformulario()
+            } else {
+                alert("Credencias incorrectas")
+                ingresando[0].intentos++
+            }
+        } else {
+            alert('Maximo de intentos alcanzados')
+        }
+    } else {
+        alert('Usuario no registrado')
+    }
+}
 function register() {
     var usuario2 = document.getElementById("nombre_registro").value
     var contrasena = document.getElementById("contrasena_registro").value
@@ -196,10 +197,10 @@ function Retirar() {
     var resta = SaldoDisponible - ValorRetiro;
     console.log(SaldoDisponible);
     if (resta < 10000) {
-        alert('no se puede realizar la transaccion, fondos insuficientes')
+        alert('no se puede realizar el retiro, se debe de quedar con minimo $10000')
     } else {
         ingresando[0].saldo = resta;
-        alert('transaccion exitosa')
+        alert('retiro exitoso')
         ValorRetiro.value = ""
     }
     actualizarSaldo()
@@ -219,7 +220,7 @@ function Consignar() {
             alert('consigancion cancelada')
         }
     } else {
-        alert("No es posible consignar menos a $10000")
+        alert("No es posible consignar menos de $10000")
     }
     actualizarSaldo()
     console.log(usuarios);
@@ -244,12 +245,12 @@ function Transferir() {
     let saldoActual = ingresando[0].saldo;
     var resta = saldoActual - ValorTransferir;
     if (resta < 10000) {
-        alert('no se puede realizar la transaccion')
+        alert('no se puede realizar la tranferencia')
     } else {
         if (confirm('seguro que deseas transferir' + ValorTransferir)) {
             ingresando[0].saldo = parseInt(resta);
             aTransferir[0].saldo += parseInt(ValorTransferir);
-            alert('Transferencias realizada')
+            alert('Transferencia realizada')
             console.log(usuarios);
         } else {
             alert('transferencia cancelada')
@@ -277,4 +278,7 @@ function cerrarSesion() {
         mostrarformulario()        
         alert('Vuelva pronto')
     }
+}
+
+function HistorialMovimientos(){
 }

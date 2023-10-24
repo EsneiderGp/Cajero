@@ -10,7 +10,7 @@
 <body>
     <img src="./assets/img/logo.png" alt="" id="logo" class="logo_oculto">
     <header class="iconos" id="iconos">
-        <a href="">
+        <a href="" onclick="HistorialMovimientos()">
             <script src="https://cdn.lordicon.com/lordicon-1.1.0.js"></script>
             <lord-icon src="https://cdn.lordicon.com/wdwnigos.json" trigger="loop"
             colors="primary:#186584,secondary:#19473b,tertiary:#001f3f,quaternary:#186584"
@@ -24,10 +24,10 @@
         colors="primary:#186584,secondary:#19473b,tertiary:#001f3f" style="width:100px;height:100px">
     </lord-icon>
 </a>
-<p>Perfil</p>
+<p>CerrarSesion</p>
     </header>
     <div class="formulario" id="form1">
-        <div action="" class="columna_uno" id="columna_uno">
+        <form action="" class="columna_uno" id="columna_uno">
             <img src="./assets/img/logo.png" alt="">
             <div class="nombre">
                 <input type="nombre" required="required" name="nombre" id="nombre">
@@ -38,27 +38,27 @@
                 <label for="contrasena">Contrasena</label>
             </div>
             <button type="button" onclick="Ingresar()">Ingresar</button>
+        </form>
+            <form action="" class="columna_dos" id="columna_dos">
+                <div class="nombre-registro">
+                    <input type="text" id="nombre_registro" required="required" name="nombre-registro" class="uno">
+                    <label for="nombre-registro">Nombre</label>
+                </div>
+                <div class="email" >
+                    <input type="email" id="correo" name="email" required="required" class="dos">
+                    <label for="email">Correo</label>
+                </div>
+                <div class="password">
+                    <input type="password" id="contrasena_registro" name="contrasena-registro" required="required">
+                    <label for="password">Contrasena</label>
+                </div>
+                <div class="number">    
+                    <input type="number" id="saldo" name="number" required="required" class="cuatro">
+                    <label for="number">MontoRegistro</label>
+                </div>
+                <button type="button" onclick="register()">Registrar</button>             
+            </form>
         </div>
-        <div action="" class="columna_dos" id="columna_dos">
-            <div class="nombre-registro">
-                <input type="text" id="nombre_registro" required="required" name="nombre-registro" class="uno">
-                <label for="nombre-registro">Nombre</label>
-            </div>
-            <div class="email" >
-                <input type="email" id="correo" name="email" required="required" class="dos">
-                <label for="email">Correo</label>
-            </div>
-            <div class="password">
-                <input type="password" id="contrasena_registro" name="contrasena-registro" required="required">
-                <label for="password">Contrasena</label>
-            </div>
-            <div class="number">    
-                <input type="number" id="saldo" name="number" required="required" class="cuatro">
-                <label for="number">MontoRegistro</label>
-            </div>
-            <button onclick="register()">Registrar</button>            
-        </div>
-    </div>
     <div class="menu_opciones" id="menu_opciones">
         <div class="form_uno" id="form_uno">
             <button type="button" onclick="ConsultarSaldo()">Consultar Dinero</button>
@@ -91,7 +91,7 @@
                 <h1>Correo: <span id="lblCorreo_Transferir"></span></h1>
                 <h2>Su Saldo Es: <span id="lblMonto_Transferir"></span></h2>
                 <select name="" id="cuenta">
-                    <option value="">Selecione</option>
+                    <option value="">Usuarios</option>
                 </select>
                 <input type="number" id="input_Transferir">
                 <button type="button" onclick="Transferir()">Transferir</button>

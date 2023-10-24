@@ -171,13 +171,23 @@ button:hover {
     display: none;
 }
 .active{
-    display: block;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
     background-color: #186584;
     text-align: center;
     box-shadow: 4px 4px 16px rgba(0, 0, 0, 0.6);
     width: 100%;
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 1rem;
+}
+select{
+    background-color: #186584;
 }
 span{
-    font-size: 2em;
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 1rem;
     color:white;
 }
