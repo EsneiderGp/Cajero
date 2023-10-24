@@ -1,6 +1,7 @@
 
 let usuarios = []
 let contId = 0
+let HistorialMovimientos = []
 var consultar = document.getElementById('consultar')
 var retirar = document.getElementById('retirar')
 var transferir = document.getElementById('transferir')
@@ -183,6 +184,9 @@ function register() {
                 contId++
                 console.log(usuarios);
                 alert('Usuario creado con exito');
+                let FechaActual = new Date()
+                let MensajeIngreso = (' el usuario '+ usuario2 + ' se registro con exito ' + FechaActual)
+                HistorialMovimientos.push(MensajeIngreso)
             } else { alert('no se puede crear cuenta por saldo insuficiente ') }
         }
     }
@@ -201,6 +205,9 @@ function Retirar() {
     } else {
         ingresando[0].saldo = resta;
         alert('retiro exitoso')
+                let FechaActual = new Date()
+                let MensajeRetiro = (' el usuario ' + ingresando[0].nombre + ' retiro ' + ValorRetiro + FechaActual)
+                HistorialMovimientos.push(MensajeRetiro)
         ValorRetiro.value = ""
     }
     actualizarSaldo()
@@ -215,6 +222,9 @@ function Consignar() {
         if (confirm('seguro que deseas consignar' + ValorConsignar)) {
             ingresando[0].saldo += ValorConsignar;
             alert('Consignacion exitosa')
+            let FechaActual = new Date()
+                let MensajConsignacion = (' el usuario ' + ingresando[0].nombre + ' Consigno ' + ValorConsignar + FechaActual)
+                HistorialMovimientos.push(MensajConsignacion)
             ValorConsignar.value = ''
         } else {
             alert('consigancion cancelada')
@@ -246,16 +256,19 @@ function Transferir() {
     var resta = saldoActual - ValorTransferir;
     if (resta < 10000) {
         alert('no se puede realizar la tranferencia')
-    } else {
-        if (confirm('seguro que deseas transferir' + ValorTransferir)) {
+    } else if(ingresando[0].saldo === aTransferir[0].saldo){
+        alert('Usted no se puede Transferir Dinero, vaya al apartado Consignar')
+    }else if (confirm('seguro que deseas transferir' + ValorTransferir)) {
             ingresando[0].saldo = parseInt(resta);
             aTransferir[0].saldo += parseInt(ValorTransferir);
             alert('Transferencia realizada')
+                let FechaActual = new Date()
+                let Mensajetransferencia = (' el usuario '+ ingresando[0].nombre + ' transfirio ' + ValorTransferir + ' a ' + aTransferir[0].nombre + FechaActual)
+                HistorialMovimientos.push(Mensajetransferencia)
             console.log(usuarios);
         } else {
             alert('transferencia cancelada')
         }
-    }
     actualizarSaldo();
     console.log(usuarios);
 }
@@ -280,5 +293,7 @@ function cerrarSesion() {
     }
 }
 
-function HistorialMovimientos(){
+function Movimientos(){
+    alert(HistorialMovimientos)
+    //  console.log(HistorialMovimientos);
 }
