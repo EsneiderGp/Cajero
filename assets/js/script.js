@@ -20,7 +20,6 @@ var lblCorreo_Transferir = document.getElementById('lblCorreo_Transferir')
 var lblMonto_Transferir = document.getElementById('lblMonto_Transferir')
 
 
-
 let botones = document.getElementById('iconos')
 iconos.style.display = 'flex'
 iconos.style.display = 'none'
@@ -127,99 +126,99 @@ function ConsignarDinero() {
 
 }
 function Ingresar() {
-    let contrasena = document.getElementById('contrasena').value
-    let nombre = document.getElementById('nombre').value
-
-    let nombreRegex = /^[a-zA-Z]{3,20}$/
-    let contrasenaRegex = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,20}$/
-
+    let contrasena = document.getElementById('contrasena').value;
+    let nombre = document.getElementById('nombre').value;
+    
+    let nombreRegex = /^[a-zA-Z]{3,20}$/;
+    let contrasenaRegex = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,20}$/;
+    
     if (!nombreRegex.test(nombre)) {
-        alert('Nombre no válido')
-        return
+        alert('Nombre no válido');
+        return;
     }
-
     if (!contrasenaRegex.test(contrasena)) {
-        alert('Contraseña no válida')
-        return
+        alert('Contraseña no válida');
+        return;
     }
 
-    var ingresando = usuarios.filter((usuario) => usuario.nombre == nombre)
-    if (ingresando.length == 1) {
-        if (ingresando[0].intentos < 3) {
-            if (contrasena == ingresando[0].contrasena) {
-                alert("Bienvenido")
-                console.log(ingresando[0].id);
-                usuarios[ingresando[0].id].status = true
-                mostrarformulario()
+    var ingresando = usuarios.find((usuario) => usuario.nombre === nombre);
+
+    if (ingresando) {
+        if (ingresando.intentos < 3) {
+            if (contrasena === ingresando.contrasena) {
+                alert("Bienvenido");
+                console.log(ingresando.id);
+                ingresando.status = true;
+                mostrarformulario();
             } else {
-                alert("Credenciales incorrectas")
-                ingresando[0].intentos++
+                alert("Credenciales incorrectas");
+                ingresando.intentos++;
             }
         } else {
-            alert('Maximo de intentos alcanzados')
+            alert('Máximo de intentos alcanzados');
         }
     } else {
-        alert('Usuario no registrado')
+        alert('Usuario no registrado');
     }
 }
-function register() {
-    var usuario2 = document.getElementById("nombre_registro").value
-    var contrasena = document.getElementById("contrasena_registro").value
-    var correo = document.getElementById("correo").value
-    var saldo = parseInt(document.getElementById("saldo").value)
 
-    let nombreRegex = /^[a-zA-Z]{3,20}$/
-    let contrasenaRegex = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,20}$/
-    let correoRegex = /^[\w-]+(\.[\w-]+)*@([\w-]+\.)+[a-zA-Z]{2,7}$/
+
+function register() {
+    var usuario2 = document.getElementById("nombre_registro").value;
+    var contrasena = document.getElementById("contrasena_registro").value;
+    var correo = document.getElementById("correo").value;
+    var saldo = parseInt(document.getElementById("saldo").value);
+
+    let nombreRegex = /^[a-zA-Z]{3,20}$/;
+    let contrasenaRegex = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,20}$/;
+    let correoRegex = /^[\w-]+(\.[\w-]+)*@([\w-]+\.)+[a-zA-Z]{2,7}$/;
 
     if (!nombreRegex.test(usuario2)) {
-        alert('Nombre no válido')
-        return
+        alert('Nombre no válido');
+        return;
     }
 
     if (!contrasenaRegex.test(contrasena)) {
-        alert('Contraseña no válida')
-        return
+        alert('Contraseña no válida');
+        return;
     }
 
     if (!correoRegex.test(correo)) {
-        alert('Correo no válido')
-        return
+        alert('Correo no válido');
+        return;
     }
 
-    var ingresando1 = usuarios.filter((usuario) => usuario.nombre == usuario2)
+    var index = usuarios.findIndex((usuario) => usuario.nombre === usuario2);
     if (usuario2 == '' || contrasena == '' || correo == '' || saldo == '') {
-        alert('Falta info')
+        alert('Falta info');
     } else {
-        if (ingresando1.length > 0) {
-            alert('Este Usuario ya existe')
+        if (index !== -1) {
+            alert('Este Usuario ya existe');
         } else {
             if (saldo >= 100000) {
                 let usuario = {
-                    id: 0,
-                    nombre: '',
-                    contrasena: '',
-                    correo: '',
-                    saldo: 0,
+                    id: contId,
+                    nombre: usuario2,
+                    contrasena: contrasena,
+                    correo: correo,
+                    saldo: saldo,
                     intentos: 0,
                     status: false
-                }
-                usuario.id = contId
-                usuario.saldo = saldo
-                usuario.contrasena = contrasena
-                usuario.correo = correo
-                usuario.nombre = usuario2
-                usuarios.push(usuario)
-                contId++
+                };
+                usuarios.push(usuario);
+                contId++;
                 console.log(usuarios);
-                alert('Usuario creado con exito');
-                let FechaActual = new Date()
-                let MensajeIngreso = (' el usuario '+ usuario2 + ' se registro con exito ' + FechaActual)
-                HistorialMovimientos.push(MensajeIngreso)
-            } else { alert('no se puede crear cuenta por saldo insuficiente ') }
+                alert('Usuario creado con éxito');
+                let FechaActual = new Date();
+                let MensajeIngreso = (' el usuario ' + usuario2 + ' se registró con éxito ' + FechaActual);
+                HistorialMovimientos.push(MensajeIngreso);
+            } else {
+                alert('No se puede crear cuenta por saldo insuficiente');
+            }
         }
     }
 }
+
 function Retirar() {
     var ValorRetiro = document.getElementById('input_Retirar').value;
 
@@ -230,9 +229,9 @@ function Retirar() {
     var resta = SaldoDisponible - ValorRetiro;
     console.log(SaldoDisponible);
     if (resta < 10000) {
-        alert('no se puede realizar el retiro, se debe de quedar con minimo $10000')
+        alert('no se puede realizar el retiro, se debe de quedar en la cuenta con minimo $10000')
     }else if(ValorRetiro < 10000){
-        alert('No es posible retirar menos $10000')
+        alert('No es posible retirar menos de $10000')
     }
     else {
         ingresando[0].saldo = resta;
@@ -321,7 +320,7 @@ function llenarCuentas() {
 function cerrarSesion() {
     let nombre = document.getElementById('nombre').value
     let ingresando = usuarios.filter((usuario) => usuario.nombre == nombre)
-    if (confirm('Seguro desea cerrar sesión')){
+    if (confirm('Seguro desea cerrar sesion')){
         usuarios[ingresando[0].id] = false
         mostrarformulario()        
         alert('Vuelva pronto')
