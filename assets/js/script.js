@@ -205,11 +205,11 @@ function Ingresar() {
     let contrasenaRegex = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,20}$/;
 
     if (!nombreRegex.test(nombre)) {
-        alert('Nombre no válido');
+        alert('Nombre no válido solo se permiten letras mayúsculas o minúsculas y tiene que ser de una longitud entre 3 y 20 caracteres.');
         return;
     }
     if (!contrasenaRegex.test(contrasena)) {
-        alert('Contraseña no válida');
+        alert('Contraseña no válida tiene que tener al menos un dígito,una letra minuscula,una letra mayuscula y tiene que tener una longitud de entre 8 y 20 caracteres');
         return;
     }
 
@@ -246,17 +246,17 @@ function register() {
     let correoRegex = /^[\w-]+(\.[\w-]+)*@([\w-]+\.)+[a-zA-Z]{2,7}$/;
 
     if (!nombreRegex.test(usuario2)) {
-        alert('Nombre no válido');
+        alert('Nombre no válido solo se permiten letras mayúsculas o minúsculas y tiene que ser de una longitud entre 3 y 20 caracteres.');
         return;
     }
 
     if (!contrasenaRegex.test(contrasena)) {
-        alert('Contraseña no válida');
+        alert('Contraseña no válida tiene que tener al menos un dígito,una letra minuscula,una letra mayuscula y tiene que tener una longitud de entre 8 y 20 caracteres');
         return;
     }
 
     if (!correoRegex.test(correo)) {
-        alert('Correo no válido');
+        alert('Correo no valido Deben contener uno o más caracteres de palabra (letras, dígitos o guiones bajos) antes del símbolo "@".Pueden tener grupos adicionales de texto que comiencen con un punto, seguidos por uno o más caracteres de palabra y guiones bajos. Estos grupos son opcionales.Después del símbolo "@", debe haber uno o más grupos de texto que consistan en caracteres de palabra y guiones bajos, seguidos por un punto.Al final, debe haber un TLD de dos a siete letras mayúsculas o minúsculas.');
         return;
     }
 
