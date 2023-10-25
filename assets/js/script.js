@@ -25,8 +25,6 @@ let botones = document.getElementById('iconos')
 iconos.style.display = 'flex'
 iconos.style.display = 'none'
 
-
-
 llenarCuentas()
 
 function mostrarformulario() {
@@ -70,6 +68,7 @@ function mostrarformulario() {
     }, 3000)
     llenarCuentas()
 }
+
 
 function ConsultarSaldo() {
     consultar.classList.remove('hiden')
@@ -130,8 +129,21 @@ function ConsignarDinero() {
 function Ingresar() {
     let contrasena = document.getElementById('contrasena').value
     let nombre = document.getElementById('nombre').value
-    var ingresando = usuarios.filter((usuario) => usuario.nombre == nombre)
 
+    let nombreRegex = /^[a-zA-Z]{3,20}$/
+    let contrasenaRegex = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,20}$/
+
+    if (!nombreRegex.test(nombre)) {
+        alert('Nombre no válido')
+        return
+    }
+
+    if (!contrasenaRegex.test(contrasena)) {
+        alert('Contraseña no válida')
+        return
+    }
+
+    var ingresando = usuarios.filter((usuario) => usuario.nombre == nombre)
     if (ingresando.length == 1) {
         if (ingresando[0].intentos < 3) {
             if (contrasena == ingresando[0].contrasena) {
@@ -140,7 +152,7 @@ function Ingresar() {
                 usuarios[ingresando[0].id].status = true
                 mostrarformulario()
             } else {
-                alert("Credencias incorrectas")
+                alert("Credenciales incorrectas")
                 ingresando[0].intentos++
             }
         } else {
@@ -156,9 +168,26 @@ function register() {
     var correo = document.getElementById("correo").value
     var saldo = parseInt(document.getElementById("saldo").value)
 
+    let nombreRegex = /^[a-zA-Z]{3,20}$/
+    let contrasenaRegex = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,20}$/
+    let correoRegex = /^[\w-]+(\.[\w-]+)*@([\w-]+\.)+[a-zA-Z]{2,7}$/
+
+    if (!nombreRegex.test(usuario2)) {
+        alert('Nombre no válido')
+        return
+    }
+
+    if (!contrasenaRegex.test(contrasena)) {
+        alert('Contraseña no válida')
+        return
+    }
+
+    if (!correoRegex.test(correo)) {
+        alert('Correo no válido')
+        return
+    }
+
     var ingresando1 = usuarios.filter((usuario) => usuario.nombre == usuario2)
-
-
     if (usuario2 == '' || contrasena == '' || correo == '' || saldo == '') {
         alert('Falta info')
     } else {
@@ -202,7 +231,10 @@ function Retirar() {
     console.log(SaldoDisponible);
     if (resta < 10000) {
         alert('no se puede realizar el retiro, se debe de quedar con minimo $10000')
-    } else {
+    }else if(ValorRetiro < 10000){
+        alert('No es posible retirar menos $10000')
+    }
+    else {
         ingresando[0].saldo = resta;
         alert('retiro exitoso')
                 let FechaActual = new Date()
@@ -258,7 +290,10 @@ function Transferir() {
         alert('no se puede realizar la tranferencia')
     } else if(ingresando[0].saldo === aTransferir[0].saldo){
         alert('Usted no se puede Transferir Dinero, vaya al apartado Consignar')
-    }else if (confirm('seguro que deseas transferir' + ValorTransferir)) {
+    }else if(ValorTransferir < 10000){
+        alert('La transferencia debe ser mayor o igual a $10000')
+    }
+    else if (confirm('seguro que deseas transferir' + ValorTransferir)) {
             ingresando[0].saldo = parseInt(resta);
             aTransferir[0].saldo += parseInt(ValorTransferir);
             alert('Transferencia realizada')
@@ -286,7 +321,7 @@ function llenarCuentas() {
 function cerrarSesion() {
     let nombre = document.getElementById('nombre').value
     let ingresando = usuarios.filter((usuario) => usuario.nombre == nombre)
-    if (confirm('Seguro desea cerrar sesión')) {
+    if (confirm('Seguro desea cerrar sesión')){
         usuarios[ingresando[0].id] = false
         mostrarformulario()        
         alert('Vuelva pronto')
@@ -294,6 +329,12 @@ function cerrarSesion() {
 }
 
 function Movimientos(){
-    alert(HistorialMovimientos)
-    //  console.log(HistorialMovimientos);
+    let nombre = document.getElementById('nombre').value
+    let ingresando = usuarios.filter((usuario) => usuario.nombre == nombre)
+    if (confirm('Seguro desea ver el hisrorial de movimientos')) {
+        usuarios[ingresando[0].id] = false
+        alert(HistorialMovimientos)
+    }
 }
+
+
