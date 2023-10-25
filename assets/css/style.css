@@ -5,9 +5,10 @@
 }
 
 body {
-    background-color:rgb(182, 202, 207);
+    background-color: rgb(182, 202, 207);
 }
-.logo_oculto{
+
+.logo_oculto {
     display: none;
     width: 500px;
     height: 500px;
@@ -20,7 +21,7 @@ header {
     font-size: 25px;
     font-family: 'Times New Roman', Times, serif;
     color: white;
-    gap: 3rem; 
+    gap: 3rem;
     display: flex;
     align-items: center;
     width: 100%;
@@ -48,7 +49,8 @@ input:focus-within {
     border-bottom: solid 1px #186584;
 }
 
-input:focus-within ~ label, input:valid ~ label {
+input:focus-within~label,
+input:valid~label {
     top: -20px;
     font-size: 15px;
     left: 0;
@@ -69,7 +71,7 @@ button {
 button:hover {
     background-color: #001F3F;
     transition: background-color .3s ease-in-out;
-    
+
 }
 
 .iconos {
@@ -124,35 +126,47 @@ button:hover {
     justify-content: center;
     gap: 2rem;
 }
-.columna_dos input{
+
+.columna_dos input {
     background-color: transparent;
-    border-color:  white;
+    border-color: white;
     color: white;
 
 }
-.columna_dos label{
+
+.columna_dos label {
     color: white;
-    
+
 }
+
 .columna_dos button {
     border: solid 2px white;
-    
+
 }
-.columna_dos button:hover{
+
+.columna_dos button:hover {
     background-color: white;
     color: #19473B;
 }
-.nombre,.contrasena,.nombre-registro,.email,.password,.number {
+
+.nombre,
+.contrasena,
+.nombre-registro,
+.email,
+.password,
+.number {
     display: flex;
     flex-direction: column;
     position: relative;
 }
-.menu_opciones{
+
+.menu_opciones {
     display: none;
     margin-top: 120px;
     gap: 2rem;
 }
-.informacion{
+
+.informacion {
     display: none;
     width: 600px;
     background-color: #186584;
@@ -160,17 +174,20 @@ button:hover {
     box-shadow: 4px 4px 16px rgba(0, 0, 0, 0.9);
     color: white;
 }
-.form_uno{
-    display:none;
+
+.form_uno {
+    display: none;
     flex-direction: column;
     width: 200px;
     gap: 5rem;
-    margin-left: 200px;    
+    margin-left: 200px;
 }
+
 .hiden {
     display: none;
 }
-.active{
+
+.active {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -183,11 +200,13 @@ button:hover {
     font-family: 'Times New Roman', Times, serif;
     font-size: 1rem;
 }
-select{
+
+select {
     background-color: #186584;
 }
-span{
+
+span {
     font-family: 'Times New Roman', Times, serif;
     font-size: 1rem;
-    color:white;
+    color: white;
 }

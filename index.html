@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,24 +8,25 @@
     <link rel="shortcut icon" href="/assets/img/logo.png">
     <title>Bank Fénix</title>
 </head>
+
 <body>
     <img src="./assets/img/logo.png" alt="" id="logo" class="logo_oculto">
     <header class="iconos" id="iconos">
         <a href="" type="button" onclick="Movimientos(event)">
             <script src="https://cdn.lordicon.com/lordicon-1.1.0.js"></script>
             <lord-icon src="https://cdn.lordicon.com/wdwnigos.json" trigger="loop"
-            colors="primary:#186584,secondary:#19473b,tertiary:#001f3f,quaternary:#186584"
-            style="width:100px;height:100px">
-        </lord-icon>
-    </a>
-    <p>Historial Movimientos</p>
-    <a href="" type="button" onclick="cerrarSesion(event)">
-        <script src="https://cdn.lordicon.com/lordicon-1.1.0.js"></script>
-        <lord-icon src="https://cdn.lordicon.com/hjacfjiq.json" trigger="loop" stroke="bold"
-        colors="primary:#186584,secondary:#19473b,tertiary:#001f3f" style="width:100px;height:100px">
-    </lord-icon>
-</a>
-<p>CerrarSesion</p>
+                colors="primary:#186584,secondary:#19473b,tertiary:#001f3f,quaternary:#186584"
+                style="width:100px;height:100px">
+            </lord-icon>
+        </a>
+        <p>Historial Movimientos</p>
+        <a href="" type="button" onclick="cerrarSesion(event)">
+            <script src="https://cdn.lordicon.com/lordicon-1.1.0.js"></script>
+            <lord-icon src="https://cdn.lordicon.com/hjacfjiq.json" trigger="loop" stroke="bold"
+                colors="primary:#186584,secondary:#19473b,tertiary:#001f3f" style="width:100px;height:100px">
+            </lord-icon>
+        </a>
+        <p>CerrarSesion</p>
     </header>
     <div class="formulario" id="form1">
         <form action="" class="columna_uno" id="columna_uno">
@@ -39,26 +41,26 @@
             </div>
             <button type="button" onclick="Ingresar()">Ingresar</button>
         </form>
-            <form action="" class="columna_dos" id="columna_dos">
-                <div class="nombre-registro">
-                    <input type="text" id="nombre_registro" required="required" name="nombre-registro" class="uno">
-                    <label for="nombre-registro">Nombre</label>
-                </div>
-                <div class="email" >
-                    <input type="email" id="correo" name="email" required="required" class="dos">
-                    <label for="email">Correo</label>
-                </div>
-                <div class="password">
-                    <input type="password" id="contrasena_registro" name="contrasena-registro" required="required">
-                    <label for="password">Contrasena</label>
-                </div>
-                <div class="number">    
-                    <input type="number" id="saldo" name="number" required="required" class="cuatro">
-                    <label for="number">MontoRegistro</label>
-                </div>
-                <button type="button" onclick="register()">Registrar</button>             
-            </form>
-        </div>
+        <form action="" class="columna_dos" id="columna_dos">
+            <div class="nombre-registro">
+                <input type="text" id="nombre_registro" required="required" name="nombre-registro" class="uno">
+                <label for="nombre-registro">Nombre</label>
+            </div>
+            <div class="email">
+                <input type="email" id="correo" name="email" required="required" class="dos">
+                <label for="email">Correo</label>
+            </div>
+            <div class="password">
+                <input type="password" id="contrasena_registro" name="contrasena-registro" required="required">
+                <label for="password">Contrasena</label>
+            </div>
+            <div class="number">
+                <input type="number" id="saldo" name="number" required="required" class="cuatro">
+                <label for="number">MontoRegistro</label>
+            </div>
+            <button type="button" onclick="register()">Registrar</button>
+        </form>
+    </div>
     <div class="menu_opciones" id="menu_opciones">
         <div class="form_uno" id="form_uno">
             <button type="button" onclick="ConsultarSaldo()">Consultar Dinero</button>
@@ -98,7 +100,7 @@
             </div>
         </div>
     </div>
-        <script src="./assets/js/script.js"></script>
+    <script src="./assets/js/script.js"></script>
 </body>
 
 </html>

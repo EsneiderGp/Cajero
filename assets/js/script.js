@@ -27,18 +27,17 @@ iconos.style.display = 'none'
 llenarCuentas()
 
 function mostrarformulario() {
-    let formularios = document.getElementById('columna_dos')
-    let formulario = document.getElementById('columna_uno')
-    let form1 = document.getElementById('form1')
-    let logo = document.getElementById('logo')
-    let form_uno = document.getElementById('form_uno')
-    let iconos = document.getElementById('iconos')
-    let menu_opciones = document.getElementById('menu_opciones')
-    let informacion = document.getElementById('informacion')
+    let formularios = document.getElementById('columna_dos');
+    let formulario = document.getElementById('columna_uno');
+    let form1 = document.getElementById('form1');
+    let logo = document.getElementById('logo');
+    let form_uno = document.getElementById('form_uno');
+    let iconos = document.getElementById('iconos');
+    let menu_opciones = document.getElementById('menu_opciones');
+    let informacion = document.getElementById('informacion');
 
-    let nombre = document.getElementById('nombre').value
-    let ingresando = usuarios.filter((usuario) => usuario.nombre == nombre)
-
+    let nombre = document.getElementById('nombre').value;
+    let ingresando = usuarios.find((usuario) => usuario.nombre === nombre);
 
     if (ingresando) {
         lblNombre.innerText = ingresando.nombre;
@@ -65,7 +64,7 @@ function mostrarformulario() {
             informacion.style.display = 'flex';
             menu_opciones.style.display = 'flex';
             form1.style.display = 'none';
-        }, 3000);
+        }, 1000);
 
         llenarCuentas();
     } else {
@@ -83,80 +82,128 @@ function mostrarformulario() {
         lblCorreo_Transferir.innerText = "";
         lblMonto_Transferir.innerText = "";
 
-          // esto es para mostrar el formulario inicial
-          formularios.style.display = 'flex';
-          formulario.style.display = 'flex';
-          form1.style.display = 'flex';
-          iconos.style.display = 'none';
-          menu_opciones.style.display = 'none';
-          informacion.style.display = 'none';
+        // esto es para mostrar el formulario inicial
+        formularios.style.display = 'flex';
+        formulario.style.display = 'flex';
+        form1.style.display = 'flex';
+        iconos.style.display = 'none';
+        menu_opciones.style.display = 'none';
+        informacion.style.display = 'none';
+
+
     }
 }
 
 
+
 function ConsultarSaldo() {
-    consultar.classList.remove('hiden')
-    consultar.classList.add('active')
+    let nombre = document.getElementById('nombre').value;
+    let ingresando = usuarios.find((usuario) => usuario.nombre === nombre);
+    if (ingresando) {
 
-    retirar.classList.remove('active')
-    retirar.classList.add('hiden')
+        consultar.classList.remove('hiden')
+        consultar.classList.add('active')
 
-    consignar.classList.add('hiden')
-    consignar.classList.remove('active')
+        retirar.classList.remove('active')
+        retirar.classList.add('hiden')
 
-    transferir.classList.remove('active')
-    transferir.classList.add('hiden')
+        consignar.classList.remove('active')
+        consignar.classList.add('hiden')
+
+        transferir.classList.remove('active')
+        transferir.classList.add('hiden')
+
+        lblNombre.innerText = ingresando.nombre
+        lblCorreo.innerText = ingresando.correo
+        lblMonto.innerText = ingresando.saldo
+    } else {
+        alert('el usuario no registrado')
+    }
 
 
 }
 function RetirarDinero() {
-    retirar.classList.remove('hiden')
-    retirar.classList.add('active')
+    let nombre = document.getElementById('nombre').value;
+    let ingresando = usuarios.find((usuario) => usuario.nombre === nombre);
+    if (ingresando) {
 
-    consultar.classList.remove('active')
-    consultar.classList.add('hiden')
 
-    consignar.classList.add('hiden')
-    consignar.classList.remove('active')
+        consultar.classList.remove('active')
+        consultar.classList.add('hiden')
 
-    transferir.classList.remove('active')
-    transferir.classList.add('hiden')
+        retirar.classList.remove('hiden')
+        retirar.classList.add('active')
+
+        consignar.classList.remove('active')
+        consignar.classList.add('hiden')
+
+        transferir.classList.remove('active')
+        transferir.classList.add('hiden')
+
+        lblNombre_Retirar.innerText = ingresando.nombre
+        lblCorreo_Retirar.innerText = ingresando.correo
+        lblMonto_Retirar.innerText = ingresando.saldo
+    } else {
+        alert('el usuario no registrado')
+    }
 }
 function TransferirDinero() {
-    transferir.classList.remove('hiden')
-    transferir.classList.add('active')
+    let nombre = document.getElementById('nombre').value;
+    let ingresando = usuarios.find((usuario) => usuario.nombre === nombre);
+    if (ingresando) {
 
-    retirar.classList.remove('active')
-    retirar.classList.add('hiden')
+        consultar.classList.remove('active')
+        consultar.classList.add('hiden')
 
-    consultar.classList.remove('active')
-    consultar.classList.add('hiden')
+        retirar.classList.remove('active')
+        retirar.classList.add('hiden')
 
-    consignar.classList.add('hiden')
-    consignar.classList.remove('active')
+        consignar.classList.remove('active')
+        consignar.classList.add('hiden')
+
+        transferir.classList.remove('hiden')
+        transferir.classList.add('active')
+
+        lblNombre_Transferir.innerText = ingresando.nombre
+        lblCorreo_Transferir.innerText = ingresando.correo
+        lblMonto_Transferir.innerText = ingresando.saldo
+    } else {
+        alert('el usuario no registrado')
+    }
 
 }
 function ConsignarDinero() {
-    consignar.classList.remove('hiden')
-    consignar.classList.add('active')
+    let nombre = document.getElementById('nombre').value;
+    let ingresando = usuarios.find((usuario) => usuario.nombre === nombre);
+    if (ingresando) {
 
-    transferir.classList.remove('active')
-    transferir.classList.add('hiden')
+        consultar.classList.remove('active')
+        consultar.classList.add('hiden')
 
-    retirar.classList.remove('active')
-    retirar.classList.add('hiden')
+        retirar.classList.remove('active')
+        retirar.classList.add('hiden')
 
-    consultar.classList.remove('active')
-    consultar.classList.add('hiden')
+        consignar.classList.remove('hiden')
+        consignar.classList.add('active')
+
+        transferir.classList.remove('active')
+        transferir.classList.add('hiden')
+
+        lblNombre_Consignar.innerText = ingresando.nombre
+        lblCorreo_Consignar.innerText = ingresando.correo
+        lblMonto_Consignar.innerText = ingresando.saldo
+    } else {
+        alert('el usuario no registrado')
+    }
 
 }
 function Ingresar() {
     let contrasena = document.getElementById('contrasena').value;
     let nombre = document.getElementById('nombre').value;
-    
+
     let nombreRegex = /^[a-zA-Z]{3,20}$/;
     let contrasenaRegex = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,20}$/;
-    
+
     if (!nombreRegex.test(nombre)) {
         alert('Nombre no válido');
         return;
@@ -235,7 +282,7 @@ function register() {
                 console.log(usuarios);
                 alert('Usuario creado con éxito');
                 let FechaActual = new Date();
-                let MensajeIngreso = (' el usuario ' + usuario2 + ' se registró con éxito ' + FechaActual.toLocaleString());
+                let MensajeIngreso = (' el usuario ' + usuario2 + ' se registró con éxito ' + FechaActual);
                 HistorialMovimientos.push(MensajeIngreso);
             } else {
                 alert('No se puede crear cuenta por saldo insuficiente');
@@ -255,19 +302,18 @@ function Retirar() {
     console.log(SaldoDisponible);
     if (resta < 10000) {
         alert('no se puede realizar el retiro, se debe de quedar en la cuenta con minimo $10000')
-    }else if(ValorRetiro < 10000){
+    } else if (ValorRetiro < 10000) {
         alert('No es posible retirar menos de $10000')
     }
     else {
         ingresando[0].saldo = resta;
         alert('retiro exitoso')
-                let FechaActual = new Date()
-                let MensajeRetiro = (' el usuario ' + ingresando[0].nombre + ' retiro ' + ValorRetiro + ' ' + FechaActual.toLocaleString())
-                HistorialMovimientos.push(MensajeRetiro)
+        let FechaActual = new Date()
+        let MensajeRetiro = (' el usuario ' + ingresando[0].nombre + ' retiro ' + ValorRetiro + FechaActual)
+        HistorialMovimientos.push(MensajeRetiro)
         ValorRetiro.value = ""
     }
     actualizarSaldo()
-    console.log(usuarios);
 }
 function Consignar() {
 
@@ -280,8 +326,8 @@ function Consignar() {
             ingresando[0].saldo += ValorConsignar;
             alert('Consignacion exitosa')
             let FechaActual = new Date()
-                let MensajConsignacion = (' el usuario ' + ingresando[0].nombre + ' Consigno ' + ValorConsignar + ' ' + FechaActual.toLocaleString())
-                HistorialMovimientos.push(MensajConsignacion)
+            let MensajConsignacion = (' el usuario ' + ingresando[0].nombre + ' Consigno ' + ValorConsignar + FechaActual)
+            HistorialMovimientos.push(MensajConsignacion)
             ValorConsignar.value = ''
         } else {
             alert('consigancion cancelada')
@@ -313,22 +359,22 @@ function Transferir() {
     var resta = saldoActual - ValorTransferir;
     if (resta < 10000) {
         alert('no se puede realizar la tranferencia')
-    } else if(ingresando[0].saldo === aTransferir[0].saldo){
+    } else if (ingresando[0].saldo === aTransferir[0].saldo) {
         alert('Usted no se puede Transferir Dinero, vaya al apartado Consignar')
-    }else if(ValorTransferir < 10000){
+    } else if (ValorTransferir < 10000) {
         alert('La transferencia debe ser mayor o igual a $10000')
     }
     else if (confirm('seguro que deseas transferir' + ValorTransferir)) {
-            ingresando[0].saldo = parseInt(resta);
-            aTransferir[0].saldo += parseInt(ValorTransferir);
-            alert('Transferencia realizada')
-                let FechaActual = new Date()
-                let Mensajetransferencia = (' el usuario '+ ingresando[0].nombre + ' transfirio ' + ValorTransferir + ' a ' + aTransferir[0].nombre + ' ' + FechaActual.toLocaleString())
-                HistorialMovimientos.push(Mensajetransferencia)
-            console.log(usuarios);
-        } else {
-            alert('transferencia cancelada')
-        }
+        ingresando[0].saldo = parseInt(resta);
+        aTransferir[0].saldo += parseInt(ValorTransferir);
+        alert('Transferencia realizada')
+        let FechaActual = new Date()
+        let Mensajetransferencia = (' el usuario ' + ingresando[0].nombre + ' transfirio ' + ValorTransferir + ' a ' + aTransferir[0].nombre + FechaActual)
+        HistorialMovimientos.push(Mensajetransferencia)
+        console.log(usuarios);
+    } else {
+        alert('transferencia cancelada')
+    }
     actualizarSaldo();
     console.log(usuarios);
 }
@@ -342,8 +388,9 @@ function llenarCuentas() {
     }
 
 }
+
 function cerrarSesion(event) {
-    event.preventDefault(); 
+    event.preventDefault();
     let nombre = document.getElementById('nombre').value;
     let ingresando = usuarios.find((usuario) => usuario.nombre === nombre);
 
@@ -354,21 +401,25 @@ function cerrarSesion(event) {
             if (ingresandoIndex !== -1) {
                 // esto es para elimina el usuario del array
                 usuarios.splice(ingresandoIndex, 1);
+                // Esto es para mostrar el formulario inicial después de cerrar sesión
                 mostrarformulario();
                 alert('Vuelva pronto');
             }
         } else {
-            alert('Usuario no encontrado al intentar cerrar sesión');
+            // En este caso, el usuario no se encontró, pero aún así, muestra el formulario inicial
+            mostrarformulario();
+            // alert('Usuario no encontrado al intentar cerrar sesión');
         }
     }
 }
-
-function Movimientos(event){
+function Movimientos(event) {
     event.preventDefault();
     let nombre = document.getElementById('nombre').value
     let ingresando = usuarios.filter((usuario) => usuario.nombre == nombre)
-    if (confirm('Seguro desea ver el hisrorial de movimientos')) {
+    if (confirm('Seguro desea ver el historial de movimientos')) {
         usuarios[ingresando[0].id] = false
         alert(HistorialMovimientos)
     }
 }
+
+
