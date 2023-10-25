@@ -40,32 +40,57 @@ function mostrarformulario() {
     let ingresando = usuarios.filter((usuario) => usuario.nombre == nombre)
 
 
-    lblNombre.innerText = ingresando[0].nombre
-    lblCorreo.innerText = ingresando[0].correo
-    lblMonto.innerText = ingresando[0].saldo
-    lblNombre_Retirar.innerText = ingresando[0].nombre
-    lblCorreo_Retirar.innerText = ingresando[0].correo
-    lblMonto_Retirar.innerText = ingresando[0].saldo
-    lblNombre_Consignar.innerText = ingresando[0].nombre
-    lblCorreo_Consignar.innerText = ingresando[0].correo
-    lblMonto_Consignar.innerText = ingresando[0].saldo
-    lblNombre_Transferir.innerText = ingresando[0].nombre
-    lblCorreo_Transferir.innerText = ingresando[0].correo
-    lblMonto_Transferir.innerText = ingresando[0].saldo
+    if (ingresando) {
+        lblNombre.innerText = ingresando.nombre;
+        lblCorreo.innerText = ingresando.correo;
+        lblMonto.innerText = ingresando.saldo;
+        lblNombre_Retirar.innerText = ingresando.nombre;
+        lblCorreo_Retirar.innerText = ingresando.correo;
+        lblMonto_Retirar.innerText = ingresando.saldo;
+        lblNombre_Consignar.innerText = ingresando.nombre;
+        lblCorreo_Consignar.innerText = ingresando.correo;
+        lblMonto_Consignar.innerText = ingresando.saldo;
+        lblNombre_Transferir.innerText = ingresando.nombre;
+        lblCorreo_Transferir.innerText = ingresando.correo;
+        lblMonto_Transferir.innerText = ingresando.saldo;
 
-    formularios.style.display = 'none'
-    formulario.style.display = 'none'
-    logo.style.display = 'flex'
-    form1.style.display = 'none'
-    setTimeout(function () {
-        logo.style.display = 'none'
-        iconos.style.display = 'flex'
-        form_uno.style.display = 'flex'
-        informacion.style.display = 'flex'
-        menu_opciones.style.display = 'flex'
-        form1.style.display = 'none'
-    }, 3000)
-    llenarCuentas()
+        formularios.style.display = 'none';
+        formulario.style.display = 'none';
+        logo.style.display = 'flex';
+        form1.style.display = 'none';
+        setTimeout(function () {
+            logo.style.display = 'none';
+            iconos.style.display = 'flex';
+            form_uno.style.display = 'flex';
+            informacion.style.display = 'flex';
+            menu_opciones.style.display = 'flex';
+            form1.style.display = 'none';
+        }, 3000);
+
+        llenarCuentas();
+    } else {
+        // esto es para limpiar los label si el usuario no existe
+        lblNombre.innerText = "";
+        lblCorreo.innerText = "";
+        lblMonto.innerText = "";
+        lblNombre_Retirar.innerText = "";
+        lblCorreo_Retirar.innerText = "";
+        lblMonto_Retirar.innerText = "";
+        lblNombre_Consignar.innerText = "";
+        lblCorreo_Consignar.innerText = "";
+        lblMonto_Consignar.innerText = "";
+        lblNombre_Transferir.innerText = "";
+        lblCorreo_Transferir.innerText = "";
+        lblMonto_Transferir.innerText = "";
+
+          // esto es para mostrar el formulario inicial
+          formularios.style.display = 'flex';
+          formulario.style.display = 'flex';
+          form1.style.display = 'flex';
+          iconos.style.display = 'none';
+          menu_opciones.style.display = 'none';
+          informacion.style.display = 'none';
+    }
 }
 
 
@@ -210,7 +235,7 @@ function register() {
                 console.log(usuarios);
                 alert('Usuario creado con éxito');
                 let FechaActual = new Date();
-                let MensajeIngreso = (' el usuario ' + usuario2 + ' se registró con éxito ' + FechaActual);
+                let MensajeIngreso = (' el usuario ' + usuario2 + ' se registró con éxito ' + FechaActual.toLocaleString());
                 HistorialMovimientos.push(MensajeIngreso);
             } else {
                 alert('No se puede crear cuenta por saldo insuficiente');
@@ -237,11 +262,12 @@ function Retirar() {
         ingresando[0].saldo = resta;
         alert('retiro exitoso')
                 let FechaActual = new Date()
-                let MensajeRetiro = (' el usuario ' + ingresando[0].nombre + ' retiro ' + ValorRetiro + FechaActual)
+                let MensajeRetiro = (' el usuario ' + ingresando[0].nombre + ' retiro ' + ValorRetiro + ' ' + FechaActual.toLocaleString())
                 HistorialMovimientos.push(MensajeRetiro)
         ValorRetiro.value = ""
     }
     actualizarSaldo()
+    console.log(usuarios);
 }
 function Consignar() {
 
@@ -254,7 +280,7 @@ function Consignar() {
             ingresando[0].saldo += ValorConsignar;
             alert('Consignacion exitosa')
             let FechaActual = new Date()
-                let MensajConsignacion = (' el usuario ' + ingresando[0].nombre + ' Consigno ' + ValorConsignar + FechaActual)
+                let MensajConsignacion = (' el usuario ' + ingresando[0].nombre + ' Consigno ' + ValorConsignar + ' ' + FechaActual.toLocaleString())
                 HistorialMovimientos.push(MensajConsignacion)
             ValorConsignar.value = ''
         } else {
@@ -297,7 +323,7 @@ function Transferir() {
             aTransferir[0].saldo += parseInt(ValorTransferir);
             alert('Transferencia realizada')
                 let FechaActual = new Date()
-                let Mensajetransferencia = (' el usuario '+ ingresando[0].nombre + ' transfirio ' + ValorTransferir + ' a ' + aTransferir[0].nombre + FechaActual)
+                let Mensajetransferencia = (' el usuario '+ ingresando[0].nombre + ' transfirio ' + ValorTransferir + ' a ' + aTransferir[0].nombre + ' ' + FechaActual.toLocaleString())
                 HistorialMovimientos.push(Mensajetransferencia)
             console.log(usuarios);
         } else {
@@ -316,18 +342,29 @@ function llenarCuentas() {
     }
 
 }
+function cerrarSesion(event) {
+    event.preventDefault(); 
+    let nombre = document.getElementById('nombre').value;
+    let ingresando = usuarios.find((usuario) => usuario.nombre === nombre);
 
-function cerrarSesion() {
-    let nombre = document.getElementById('nombre').value
-    let ingresando = usuarios.filter((usuario) => usuario.nombre == nombre)
-    if (confirm('Seguro desea cerrar sesion')){
-        usuarios[ingresando[0].id] = false
-        mostrarformulario()        
-        alert('Vuelva pronto')
+    if (confirm('¿Seguro desea cerrar sesión?')) {
+        if (ingresando) {
+            // esto es para encontrar el índice del usuario en el array
+            let ingresandoIndex = usuarios.findIndex((usuario) => usuario.nombre === nombre);
+            if (ingresandoIndex !== -1) {
+                // esto es para elimina el usuario del array
+                usuarios.splice(ingresandoIndex, 1);
+                mostrarformulario();
+                alert('Vuelva pronto');
+            }
+        } else {
+            alert('Usuario no encontrado al intentar cerrar sesión');
+        }
     }
 }
 
-function Movimientos(){
+function Movimientos(event){
+    event.preventDefault();
     let nombre = document.getElementById('nombre').value
     let ingresando = usuarios.filter((usuario) => usuario.nombre == nombre)
     if (confirm('Seguro desea ver el hisrorial de movimientos')) {
@@ -335,5 +372,3 @@ function Movimientos(){
         alert(HistorialMovimientos)
     }
 }
-
-
